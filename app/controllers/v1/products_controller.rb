@@ -62,9 +62,12 @@ class V1::ProductsController < ApplicationController
       image_url: params["input_image_url"],
       description: params["input_description"]
       )
-    product.save
-    render json: product.as_json
-  end 
+    if product.save
+      render json: product.as_json
+    else 
+      render json: {errors: product.errors.full_messages}, status: 422
+    end 
+  end
 
   def update
     product_id = params["id"]
@@ -73,8 +76,11 @@ class V1::ProductsController < ApplicationController
     products.price = params["input_price"] || products.price
     products.image_url = params["input_image_url"] || products.image_url
     products.description = params["input_description"] || products.description
-    products.save
-    render json: products.as_json
+    if product.save
+      render json: product.as_json
+    else
+      render json: {errors: product.errors.full_messages}, status: 422
+    end
   end
 
   def destroy
