@@ -3,6 +3,8 @@ require "unirest"
 system "clear"
 puts "Choose an option"
 puts "[1] See all Products"
+puts "[1.1] Search for products name"
+puts "[1.2] Sort products by price"
 puts "[2] See one Product"
 puts "[3] Create a Product"
 puts "[4] Update a Product"
@@ -26,6 +28,16 @@ puts "[5] Delete a Product"
 input_option = gets.chomp
 if input_option == "1"
   response = Unirest.get("http://localhost:3000/v1/products")
+  product = response.body
+  puts JSON.pretty_generate(product)
+elsif input_option == "1.1"
+  puts "Please enter a name"
+  search_input = gets.chomp
+  response = Unirest.get("http://localhost:3000/v1/products?input_search_terms=#{search_input}")
+  product = response.body
+  puts JSON.pretty_generate(product)
+elsif input_option =="1.2"
+  response = Unirest.get("http://localhost:3000/v1/products?sort_by_price=true")
   product = response.body
   puts JSON.pretty_generate(product)
 elsif input_option == "2"
@@ -68,10 +80,12 @@ elsif input_option == "4"
   params.delete_if { |_key, value| value.empty? }
   response = Unirest.patch("http://localhost:3000/v1/products/#{product_id}", parameters: params)
   product = response.body
-  if product.save
-    render json: product.as_json
+  if product["errors"]
+    puts "Uh oh! Something went wrong..."
+    p product["errors"]
   else
-    render json: {errors: product.errors.full_messages}, status: 422
+    puts "Here is your product info:"
+    puts JSON.pretty_generate(product)
   end
 elsif input_option == "5"
   print "Enter a Product id: "
