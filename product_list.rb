@@ -52,8 +52,8 @@ elsif input_option == "3"
   params["input_name"] = gets.chomp
   print "Price: "
   params["input_price"] = gets.chomp
-  print "Image Url: "
-  params["input_image_url"] = gets.chomp
+  # print "Image Url: "
+  # params["input_image_url"] = gets.chomp
   print "Description: "
   params["input_description"] = gets.chomp
   response = Unirest.post("http://localhost:3000/v1/product", parameters: params)
@@ -73,8 +73,8 @@ elsif input_option == "4"
   params["input_name"] = gets.chomp
   print "Price (#{product["price"]}): "
   params["input_price"] = gets.chomp
-  print "image URL (#{product["image_url"]}): "
-  params["input_image_url"] = gets.chomp
+  # print "image URL (#{product["image_url"]}): "
+  # params["input_image_url"] = gets.chomp
   print "Description(#{product["description"]}): "
   params["input_description"] = gets.chomp
   params.delete_if { |_key, value| value.empty? }

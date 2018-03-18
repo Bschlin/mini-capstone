@@ -73,7 +73,7 @@ class V1::ProductsController < ApplicationController
     product = Product.new(      
       name: params["input_name"],
       price: params["input_price"],
-      image_url: params["input_image_url"],
+      # image_url: params["input_image_url"],
       description: params["input_description"]
       )
     if product.save
@@ -88,7 +88,7 @@ class V1::ProductsController < ApplicationController
     products = Product.find_by(id: product_id)
     products.name = params["input_name"] || products.name
     products.price = params["input_price"] || products.price
-    products.image_url = params["input_image_url"] || products.image_url
+    # products.image_url = params["input_image_url"] || products.image_url
     products.description = params["input_description"] || products.description
     if product.save
       render json: product.as_json
