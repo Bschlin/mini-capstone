@@ -1,4 +1,45 @@
 require "unirest"
+system "clear"
+puts "Welcome to Products app! Choose an option:"
+puts "[signup] Signup (create a user)"
+puts "[login] Login (create a JSON web token)"
+puts "[logout] Logout (delete the JSON web token)"
+
+input_option = gets.chomp
+if input_option == "signup"
+  params = {}
+  print "Name: "
+  params[:name] = gets.chomp
+  print "Email: "
+  params[:email] = gets.chomp
+  print "Password: "
+  params[:password] = gets.chomp
+  print "Password Confirmation: "
+  params[:password_confirmation] = gets.chomp
+  response = Unirest.post("http://localhost:3000/v1/users", parameters: params)
+  p response.body
+elsif input_option == "login"
+  puts "Please enter your email"
+  input_email = gets.chomp
+  puts "Enter a password"
+  input_password = gets.chomp 
+
+  response = Unirest.post(
+  "http://localhost:3000/user_token",
+  parameters: {
+    auth: {
+      email: input_email,
+      password: input_password
+    }
+  }
+)
+  jwt = response.body["jwt"]
+  Unirest.default_header("Authorization", "Bearer #{jwt}")
+elsif input_option == "logout"
+  jwt = ""
+  Unirest.clear_default_headers()
+end
+
 
 system "clear"
 puts "Choose an option"
@@ -9,7 +50,10 @@ puts "[2] See one Product"
 puts "[3] Create a Product"
 puts "[4] Update a Product"
 puts "[5] Delete a Product"
-puts "[signup] Signup (create a user)"
+puts "[6] Order a Product"
+puts "[7] See all orders"
+puts "[8] Show all Categories"
+
 
 
 # input_option = gets.chomp
@@ -94,19 +138,27 @@ elsif input_option == "5"
   response = Unirest.delete("http://localhost:3000/v1/products/#{product_id}")
   body = response.body
   puts JSON.pretty_generate(body)
-elsif input_option == "signup"
+elsif input_option == "6"
   params = {}
-  print "Name: "
-  params[:name] = gets.chomp
-  print "Email: "
-  params[:email] = gets.chomp
-  print "Password: "
-  params[:password] = gets.chomp
-  print "Password Confirmation: "
-  params[:password_confirmation] = gets.chomp
-  response = Unirest.post("http://localhost:3000/v1/users", parameters: params)
-  p response.body
+  print "Product Id: "
+  params[:product_id] = gets.chomp
+  print "Quantity: "
+  params[:quantity] = gets.chomp
+  response = Unirest.post("http://localhost:3000/v1/orders", parameters: params)
+  body = response.body
+  puts JSON.pretty_generate(body)
+  elsif input_option == "7"
+    puts "Here are all your orders"
+    response = Unirest.get("http://localhost:3000/v1/orders")
+    orders = response.body
+    puts JSON.pretty_generate(orders)
+  elsif input_option == "8"
+    category_id = gets.chomp
+    response = Unirest.get("http://localhost:3000/v1/categories/#{category_id}")
+    categories = response.body
+    puts JSON.pretty_generate(categories)
 end 
+
 
 
  # response = Unirest.get("http://localhost:3000/all_products")
