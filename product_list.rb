@@ -86,7 +86,7 @@ elsif input_option =="1.2"
   product = response.body
   puts JSON.pretty_generate(product)
 elsif input_option == "2"
-  print "Enter a recipe id: "
+  print "Enter a product id: "
   product_id = gets.chomp
   response = Unirest.get("http://localhost:3000/v1/product/#{product_id}")
   product = response.body
