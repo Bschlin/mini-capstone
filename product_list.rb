@@ -52,7 +52,7 @@ puts "[4] Update a Product"
 puts "[5] Delete a Product"
 puts "[6] Order a Product"
 puts "[7] See all orders"
-puts "[8] Show all Categories"
+puts "[8] Show all Products of a specific Category"
 
 
 
@@ -153,8 +153,7 @@ elsif input_option == "6"
     orders = response.body
     puts JSON.pretty_generate(orders)
   elsif input_option == "8"
-    category_id = gets.chomp
-    response = Unirest.get("http://localhost:3000/v1/categories/#{category_id}")
+    response = Unirest.get("http://localhost:3000/v1/products?category=Toiletries")
     categories = response.body
     puts JSON.pretty_generate(categories)
 end 
