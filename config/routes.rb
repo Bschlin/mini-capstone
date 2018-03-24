@@ -7,16 +7,20 @@ Rails.application.routes.draw do
     # get "/third_product_method" => "products#third_product_method"
     # get "/all_products" => "products#all_products"
 
-    post "/orders" => "orders#create"
+    # post "/orders" => "orders#create"
     get "/orders" => "orders#index"
+
     get "/products" => "products#index"
     get "/product/:id" => "products#show"
     post "/product" => "products#create"
     patch "/products/:id" => "products#update"
     delete "products/:id" => "products#destroy"
+    
     post "/users" => "users#create"
     
     get "/categories/:id" => "categories#show"
     get "/categories" => "categories#index"
+
+    post "/carted_products" => "carted_products#create"
   end
 end
