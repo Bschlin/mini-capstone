@@ -153,6 +153,7 @@ elsif input_option == "6"
     orders = response.body
     puts JSON.pretty_generate(orders)
   elsif input_option == "8"
+    puts "Select a category"
     response = Unirest.get("http://localhost:3000/v1/products?category=Toiletries")
     categories = response.body
     puts JSON.pretty_generate(categories)
