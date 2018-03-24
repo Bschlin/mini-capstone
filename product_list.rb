@@ -52,7 +52,8 @@ puts "[4] Update a Product"
 puts "[5] Delete a Product"
 # puts "[6] Order a Product"
 puts "[6] Add items to cart"
-puts "[7] See all orders"
+# puts "[7] See all orders"
+puts "[7] Show everything in your cart"
 puts "[8] Show all Products of a specific Category"
 
 
@@ -141,27 +142,37 @@ elsif input_option == "5"
   body = response.body
   puts JSON.pretty_generate(body)
 elsif input_option == "6"
-  # params = {}
-  # print "Product Id: "
-  # params[:product_id] = gets.chomp
-  # print "Quantity: "
-  # params[:quantity] = gets.chomp
   params = {}
   print "Product Id: "
   params[:product_id] = gets.chomp
   print "Quantity: "
   params[:quantity] = gets.chomp
-  # response = Unirest.post("http://localhost:3000/v1/orders", parameters: params)
   response = Unirest.post("http://localhost:3000/v1/carted_products", parameters: params)
-  # body = response.body
-  # puts JSON.pretty_generate(body)
-  order = response.body
-  puts JSON.pretty_generate(order)
+  carted_products = response.body
+  if carted_products["errors"] 
+    puts "Uh oh! Something is wrong!"
+    p carted_products["errors"]
+  else
+    puts "Here is your carted_products info:"
+    puts JSON.pretty_generate(carted_products)
+  end
+  # params = {}
+  # print "Product Id: "
+  # params[:product_id] = gets.chomp
+  # print "Quantity: "
+  # params[:quantity] = gets.chomp
+  # response = Unirest.post("http://localhost:3000/v1/orders", parameters: params)
+  # order = response.body
+  # puts JSON.pretty_generate(order)
   elsif input_option == "7"
-    puts "Here are all your orders"
-    response = Unirest.get("http://localhost:3000/v1/orders")
-    orders = response.body
-    puts JSON.pretty_generate(orders)
+    puts "Here is your cart: "
+    response = Unirest.get("http://localhost:3000/v1/carted_products")
+    carted_products = response.body
+    puts JSON.pretty_generate(carted_products)
+    # puts "Here are all your orders"
+    # response = Unirest.get("http://localhost:3000/v1/orders")
+    # orders = response.body
+    # puts JSON.pretty_generate(orders)
   elsif input_option == "8"
     response = Unirest.get("http://localhost:3000/v1/products?category=Toiletries")
     categories = response.body
