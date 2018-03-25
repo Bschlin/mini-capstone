@@ -7,7 +7,7 @@ Rails.application.routes.draw do
     # get "/third_product_method" => "products#third_product_method"
     # get "/all_products" => "products#all_products"
 
-    # post "/orders" => "orders#create"
+    post "/orders" => "orders#create"
     get "/orders" => "orders#index"
 
     get "/products" => "products#index"
