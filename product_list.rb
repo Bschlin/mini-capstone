@@ -1,10 +1,18 @@
 require "unirest"
+
+#Class Frontend
+# def initialize
+# end
+
+# def menu
 system "clear"
 puts "Welcome to Products app! Choose an option:"
 puts "[signup] Signup (create a user)"
 puts "[login] Login (create a JSON web token)"
 puts "[logout] Logout (delete the JSON web token)"
+# end
 
+# def signup
 input_option = gets.chomp
 if input_option == "signup"
   params = {}
@@ -18,6 +26,9 @@ if input_option == "signup"
   params[:password_confirmation] = gets.chomp
   response = Unirest.post("http://localhost:3000/v1/users", parameters: params)
   p response.body
+  # end
+
+  # def login
 elsif input_option == "login"
   puts "Please enter your email"
   input_email = gets.chomp
@@ -35,12 +46,17 @@ elsif input_option == "login"
 )
   jwt = response.body["jwt"]
   Unirest.default_header("Authorization", "Bearer #{jwt}")
+  # end
+
+# def logout
 elsif input_option == "logout"
   jwt = ""
   Unirest.clear_default_headers()
 end
+# end
 
 
+# def show_menu
 system "clear"
 puts "Choose an option"
 puts "[1] See all Products"
@@ -57,7 +73,7 @@ puts "[7] Show everything in your cart"
 puts "[8] Show all Products of a specific Category"
 puts "[9] Order everything in shopping cart"
 puts "[10] Remove a carted product"
-
+# end
 
 
 
@@ -190,7 +206,7 @@ elsif input_option == "6"
     output = response.body
     puts JSON.pretty_generate(output)
 end 
-
+#end
 
 
  # response = Unirest.get("http://localhost:3000/all_products")
