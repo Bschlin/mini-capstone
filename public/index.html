@@ -1,22 +1,21 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
-  <head>
-    <!-- Required meta tags -->
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<head>
+  <meta charset="UTF-8">
+  <title>My App</title>
+  <script src="https://unpkg.com/vue/dist/vue.js"></script>
+  <script src="https://unpkg.com/vue-router/dist/vue-router.js"></script>
+  <script src="https://unpkg.com/axios/dist/axios.js"></script>
+  <script src="index.js" defer></script>
 
-    <!-- Bootstrap CSS -->
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
     <link rel="stylesheet" href="products.css">
 
-    <title>Hello, world!</title>
-    <script src="index.js" defer></script>
-  </head>
+</head>
+<body>
+  <div id="vue-app">
 
-  <body>
-
-    
-    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+     <nav class="navbar navbar-expand-lg navbar-light bg-light">
   <a class="navbar-brand" href="#"><span style="color: blue">Navbar</span></a>
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
@@ -30,13 +29,23 @@
       <li class="nav-item">
         <a class="nav-link" href="#">Link</a>
       </li>
+      <li class="nav-item">
+        <a class="nav-link" href="/#/signup">Signup</a>
+      </li>
+       <li class="nav-item">
+        <a class="nav-link" href="/#/login">Login</a>
+      </li>
+       <li class="nav-item">
+        <a class="nav-link" href="/#/logout">Logout</a>
+      </li>
       <li class="nav-item dropdown">
         <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
           Dropdown
         </a>
         <div class="dropdown-menu" aria-labelledby="navbarDropdown">
           <a class="dropdown-item" href="show.html">Show a Product</a>
-          <a class="dropdown-item" href="new.html">Create a Product</a>
+          <a class="dropdown-item" href="/#/products/new">Create a Product</a>
+           <a class="dropdown-item" href="/#/sample">Go to a sample page</a>
           <div class="dropdown-divider"></div>
           <a class="dropdown-item" href="edit.html">Update an existing Product</a>
         </div>
@@ -52,89 +61,148 @@
   </div>
 </nav>
 
+    <router-view></router-view>
 
-     <div class="container">
-      <br>
- <div class="row">
-  <!-- <div class="col-sm-4">
-    <div class="card">
-      <div class="card-body">
-        <h5 class="card-title">Product Name</h5>
-        <p class="card-text">Description of Product.</p>
-        <a href="#" class="btn btn-primary">Add to cart</a>
-      </div>
-    </div> -->
   </div>
-  <!-- <div class="col-sm-4">
-    <div class="card">
-      <div class="card-body">
-        <h5 class="card-title">Product Name</h5>
-        <p class="card-text">Description of Product.</p>
-        <a href="#" class="btn btn-primary">Add to cart</a>
-      </div>
-    </div>
-  </div>
-  <div class="col-sm-4">
-    <div class="card">
-      <div class="card-body">
-        <h5 class="card-title">Product Name</h5>
-        <p class="card-text">Description of Product.</p>
-        <a href="#" class="btn btn-primary">Add to cart</a>
-      </div>
-    </div>
-  </div>
-</div>
-<br>
- <div class="row">
-  <div class="col-sm-4">
-    <div class="card">
-      <div class="card-body">
-        <h5 class="card-title">Product Name</h5>
-        <p class="card-text">Description of Product.</p>
-        <a href="#" class="btn btn-primary">Add to cart</a>
-      </div>
-    </div>
-  </div>
-  <div class="col-sm-4">
-    <div class="card">
-      <div class="card-body">
-        <h5 class="card-title">Product Name</h5>
-        <p class="card-text">Description of Product.</p>
-        <a href="#" class="btn btn-primary">Add to cart</a>
-      </div>
-    </div>
-  </div>
-  <div class="col-sm-4">
-    <div class="card">
-      <div class="card-body">
-        <h5 class="card-title">Product Name</h5>
-        <p class="card-text">Description of Product.</p>
-        <a href="#" class="btn btn-primary">Add to cart</a>
-      </div>
-    </div>
-  </div>
-</div> -->
-</div>
 
-<template id="products-card">
-  <div class="col-sm-4">
-    <div class="card">
-      <div class="card-body">
-        <h5 class="card-title">Product Name</h5>
-        <p class="card-text">Description of Product.</p>
-        <a href="#" class="btn btn-primary">Add to cart</a>
-      </div>
-    </div>
-    <br>
-</template>
-
-
-
-
-    <!-- Optional JavaScript -->
-    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
-    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+  <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
-  </body>
+
+</body>
 </html>
+
+<template id="home-page">
+  <div class="vue-component container">
+
+    <h1>{{ message }}</h1>
+
+  <a href="/#/sample">Go to a sample page</a>
+    <div class="row">
+
+    <div class="col-sm-4" v-for="product in products">
+    <div class="card">
+      <div class="card-body">
+        <h5 class="card-title">{{ product.name }}</h5>
+        <p class="card-text">{{ product.description }}</p>
+        <p class="price">{{ product.price }}</p>
+        <p class="image" v-bind:src="product.image"></p>
+        <!-- <a href="#" class="btn btn-primary">Add to cart</a> -->
+        <a href="#" class="btn btn-primary" v-on:click="setCurrentProduct(product)" data-toggle="modal" data-target="#exampleModal">Add to cart</a>
+      </div>
+    </div>
+      <br>
+    </div>
+
+    <div class="modal" id="exampleModal" tabindex="-1" role="dialog">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">{{ currentProduct.name}}</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+         {{ currentProduct.price}}
+         <br>
+         {{ currentProduct.description}}
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-primary">Save changes</button>
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+  </div>
+</template>
+
+<template id="sample-page">
+  <div class="vue-component">
+    <div class="container">
+      <h1>{{ message }}</h1>
+      <a href="/#/">Go to home page</a>
+      <p>This is a sample page</p>
+    </div>
+  </div>
+</template>
+
+<template id="signup-page">
+  <div class="vue-component">
+
+    <div class="container">
+      <h1>Signup</h1>
+      <ul>
+        <li class="text-danger" v-for="error in errors">{{ error }}</li>
+      </ul>
+      <div class="form-group">
+        <label>Name:</label> 
+        <input type="text" class="form-control" v-model="name">
+      </div>
+      <div class="form-group">
+        <label>Email:</label>
+        <input type="email" class="form-control" v-model="email">
+      </div>
+      <div class="form-group">
+        <label>Password:</label>
+        <input type="password" class="form-control" v-model="password">
+      </div>
+      <div class="form-group">
+        <label>Password confirmation:</label>
+        <input type="password" class="form-control" v-model="passwordConfirmation">
+      </div>
+      <button class="btn btn-primary" v-on:click="submit()">Submit</button>
+    </div>
+
+  </div>
+</template>
+
+<template id="login-page">
+  <div class="vue-component">
+
+    <div class="container">
+      <h1>Login</h1>
+      <ul>
+        <li class="text-danger" v-for="error in errors">{{ error }}</li>
+      </ul>
+      <div class="form-group">
+        <label>Email:</label>
+        <input type="email" class="form-control" v-model="email">
+      </div>
+      <div class="form-group">
+        <label>Password:</label>
+        <input type="password" class="form-control" v-model="password">
+      </div>
+      <button class="btn btn-primary" v-on:click="submit()">Submit</button>
+    </div>
+
+  </div>
+</template>
+
+<template id="products-new-page">
+  <div class="vue-component">
+
+    <div class="container">
+      <h1>New Product</h1>
+      <ul>
+        <li class="text-danger" v-for="error in errors">{{ error }}</li>
+      </ul>
+      <div class="form-group">
+        <label>Name:</label>
+        <input type="text" class="form-control" v-model="name">
+      </div>
+      <div class="form-group">
+        <label>Price:</label>
+        <input type="text" class="form-control" v-model="price">
+      </div>
+      <div class="form-group">
+        <label>Description:</label>
+        <input type="text" class="form-control" v-model="description">
+      </div>
+      <button class="btn btn-primary" v-on:click="submit()">Submit</button>
+    </div>
+
+  </div>
+</template>
