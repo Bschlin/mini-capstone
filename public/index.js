@@ -6,6 +6,7 @@ var HomePage = {
     return {
       message: "Welcome to Vue.js!",
       products: [],
+      titleFilter: "",
       currentProduct: {
         name: "",
         price: "",
@@ -23,6 +24,12 @@ var HomePage = {
   methods: {
     setCurrentProduct: function(inputProduct) {
       this.currentProduct = inputProduct;
+    },
+    isValidProduct: function(inputProduct) {
+      var lowerInputName = inputProduct.name.toLowerCase();
+      var lowerTitleFilter = this.titleFilter.toLowerCase();
+      return lowerInputName.includes(lowerTitleFilter);
+      // return inputProduct.name.includes(this.titleFilter);
     }
   },
   computed: {}
