@@ -3,10 +3,10 @@
 }
 
 body {
-  background-image: url('http://s3.amazonaws.com/codecademy-content/projects/broadway/bg.jpg');
-    background-size:cover;
-   }
+  background-image: url("http://s3.amazonaws.com/codecademy-content/projects/broadway/bg.jpg");
+  background-size: cover;
+}
 
-   .card-body{
+/*.card-body{
     background-image: url('spiration-light.png');
-   }
+   }*/

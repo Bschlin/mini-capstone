@@ -77,12 +77,15 @@
 
     <h1>{{ message }}</h1>
 
-   <input type="text" v-model="titleFilter" placeholder="Search by product title">
+     <input type="text" v-model="titleFilter" placeholder="Search by product name" list="product-names">
+      <datalist id="product-names">
+        <option v-for="product in products">{{ product.name }}</option>
+      </datalist>
     <div class="row">
 
     <div class="col-sm-4" v-for="product in products" v-if="isValidProduct(product)">
     <div class="card">
-      <img class="card-img-top" v-bind:src="product.image" alt="Card image cap">
+      <img class="card-img-top" v-bind:src="product.images" alt="Card image cap">
       <div class="card-body">
         <h5 class="card-title">{{ product.name }}</h5>
         <p class="card-text">{{ product.description }}</p>
