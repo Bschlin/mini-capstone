@@ -24,10 +24,7 @@
   <div class="collapse navbar-collapse" id="navbarSupportedContent">
     <ul class="navbar-nav mr-auto">
       <li class="nav-item active">
-        <a class="nav-link" href="index.html">Home <span class="sr-only">(current)</span></a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" href="/#/">Link</a>
+        <a class="nav-link" href="/#/">Home <span class="sr-only">(current)</span></a>
       </li>
       <li class="nav-item">
         <a class="nav-link" href="/#/signup">Signup</a>
@@ -81,9 +78,18 @@
       <datalist id="product-names">
         <option v-for="product in products">{{ product.name }}</option>
       </datalist>
-    <div class="row">
+      <br>
+      <br>
 
-    <div class="col-sm-4" v-for="product in products" v-if="isValidProduct(product)">
+       <div>
+        <button class="btn btn-primary" v-on:click="sortAttribute = 'name'">Sort by name</button>
+        <button class="btn btn-primary" v-on:click="sortAttribute = 'price'">Sort by price</button>
+      </div>
+      <br>
+      <br>
+    <div class="row" is="transition-group" name="bounce">
+
+      <div class="col-md-4" v-for="product in sortedProducts" v-if="isValidProduct(product)" v-bind:key="product.id">
     <div class="card">
       <img class="card-img-top" v-bind:src="product.images" alt="Card image cap">
       <div class="card-body">
